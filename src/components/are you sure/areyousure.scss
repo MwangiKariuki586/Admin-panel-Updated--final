@@ -1,0 +1,31 @@
+.confirm_delete {
+    width: 100vw; 
+    height: 100vh; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    background-color: rgba(0, 0, 0, 0.924); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 25px; 
+    opacity: 1; 
+    visibility: visible; 
+    transition: opacity 1.5s ease, visibility 1.5s ease; /* Smooth transition */
+}
+
+.confirm_delete.hidden {
+    opacity: 0; 
+    visibility: hidden; 
+}
+
+.btns {
+    display: flex; 
+    gap: 10px; 
+}
+
+.cancel {
+    background-color: transparent; 
+    border: 2px solid #e52384; 
+}
