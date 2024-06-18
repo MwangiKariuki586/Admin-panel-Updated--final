@@ -34,7 +34,14 @@ const Single = (props) => {
   useEffect(() => {
     setFormState(items);
   }, [items]);
-
+  const isHidden = [
+    "user_staffid",
+    "user_staffname",
+    "user_department",
+    "user_location",
+    "toner_name",
+    "printer",
+  ];
   const handleUpdate = async (e) => {
     // console.log("Endpoint:", state);
     // console.log(passfields);
@@ -118,6 +125,7 @@ const Single = (props) => {
                     "user_staffid",
                     "quantity",
                   ].includes(key);
+
                   const isToner = ["toner_name"].includes(key);
                   const isPrinter = ["printer"].includes(key);
                   return (
@@ -130,6 +138,7 @@ const Single = (props) => {
                           name={key}
                           checked={formState[key] || false}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         />
                       ) : isNumber ? (
                         <input
@@ -138,6 +147,7 @@ const Single = (props) => {
                           className="itemValue"
                           value={formState[key] || ""}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         />
                       ) : typeof items[key] === "string" &&
                         items[key].includes("03:00") ? (
@@ -148,6 +158,7 @@ const Single = (props) => {
                           className="itemValue"
                           value={formState[key] || ""}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         >
                           {departmentdata?.map((option) => (
                             <option key={option.id} value={option.id}>
@@ -161,6 +172,7 @@ const Single = (props) => {
                           className="itemValue"
                           value={formState[key] || ""}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         >
                           {locationdata?.map((option) => (
                             <option key={option.id} value={option.id}>
@@ -174,6 +186,7 @@ const Single = (props) => {
                           className="itemValue"
                           value={formState[key] || ""}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         >
                           {tonerdata?.map((option) => (
                             <option key={option.id} value={option.id}>
@@ -187,9 +200,11 @@ const Single = (props) => {
                           className="itemValue"
                           value={formState[key] || ""}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         >
                           {printerdata?.map((option) => (
                             <option key={option.id} value={option.id}>
+                              {/* this does not match the expected field */}
                               {option.Printer_name}
                             </option>
                           ))}
@@ -201,6 +216,7 @@ const Single = (props) => {
                           className="itemValue"
                           value={formState[key] || ""}
                           onChange={handleInputChange}
+                          disabled={isHidden.includes(key)}
                         />
                       )}
                     </div>

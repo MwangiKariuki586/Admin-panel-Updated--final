@@ -37,6 +37,7 @@ const UserContextProvider = ({ children }) => {
     : null;
   const [dataChanged, setDataChanged] = useState(false);
   const [username, setUsername] = useState();
+  const [loading, setLoading] = useState(true);
   const accessToken = localStorage.getItem("access")
     ? localStorage.getItem("access")
     : null;
@@ -49,15 +50,39 @@ const UserContextProvider = ({ children }) => {
       ? `Bearer ${accessToken}`
       : console.log("token not found"),
   };
-
   useEffect(() => {
-    getPrinters();
-    getLocations();
-    getToners();
-    getDepartments();
-    getUsers();
-    getTonerrequests();
-  }, [dataChanged]);
+    if (accessToken) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
+  }, [dataChanged, accessToken]);
+
+  const fetchData = async () => {
+    try {
+      await Promise.all([
+        getDepartments(),
+        getToners(),
+        getLocations(),
+        getPrinters(),
+        getUsers(),
+        getTonerrequests(),
+      ]);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  // useEffect(() => {
+  //   getPrinters();
+  //   getLocations();
+  //   getToners();
+  //   getDepartments();
+  //   getUsers();
+  //   getTonerrequests();
+  // }, [dataChanged]);
 
   const getDepartments = () => {
     axios
@@ -178,6 +203,7 @@ const UserContextProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
+        loading,
         headers,
         username,
         setUsername,

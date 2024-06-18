@@ -75,7 +75,7 @@ const Login = () => {
     axios
       .post(login_api, formValues)
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         if (response.status == 200 && response.data.is_staff == true) {
           const access = response.data.access;
           const refresh = response.data.refresh;
