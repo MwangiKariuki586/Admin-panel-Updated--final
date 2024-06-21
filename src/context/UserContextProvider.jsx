@@ -38,6 +38,7 @@ const UserContextProvider = ({ children }) => {
   const [dataChanged, setDataChanged] = useState(false);
   const [username, setUsername] = useState();
   const [loading, setLoading] = useState(true);
+
   const accessToken = localStorage.getItem("access")
     ? localStorage.getItem("access")
     : null;
@@ -53,8 +54,6 @@ const UserContextProvider = ({ children }) => {
   useEffect(() => {
     if (accessToken) {
       fetchData();
-    } else {
-      setLoading(false);
     }
   }, [dataChanged, accessToken]);
 
@@ -68,11 +67,11 @@ const UserContextProvider = ({ children }) => {
         getUsers(),
         getTonerrequests(),
       ]);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.error("Error fetching data:", err);
       setError(err);
-    } finally {
-      setLoading(false);
     }
   };
   // useEffect(() => {
@@ -204,6 +203,7 @@ const UserContextProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         loading,
+        setLoading,
         headers,
         username,
         setUsername,

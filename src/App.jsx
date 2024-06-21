@@ -3,10 +3,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Users from "./pages/users/Users";
 import Toner_requests from "./pages/Toner requests/Toner_requests";
 import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
+import Loading from "./components/loading/Loading";
 import Menu from "./components/menu/Menu";
 import "./styles/global.scss";
-import User from "./pages/user/SingleObject";
 import Toners from "./pages/toners/Toners";
 import Printers from "./pages/printers/Printers";
 import Locations from "./pages/locations/Locations";
@@ -18,27 +17,33 @@ import Add from "./components/add/Add";
 import Single from "./components/single/Single";
 import Login from "./pages/login/Login";
 import UserContext from "./context/UserContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import ProtectedRoutes from "./protected route/ProtectedRoutes";
 
 function App() {
   const queryClient = new QueryClient();
+  const { loading } = useContext(UserContext);
   const Layout = () => {
     return (
-      <div className="main">
-        <Navbar />
-        <div className="container">
-          <div className="menuContainer">
-            <Menu />
+      <>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="main">
+            <Navbar />
+            <div className="container">
+              <div className="menuContainer">
+                <Menu />
+              </div>
+              <div className="contentContainer">
+                <QueryClientProvider client={queryClient}>
+                  <Outlet />
+                </QueryClientProvider>
+              </div>
+            </div>
           </div>
-          <div className="contentContainer">
-            <QueryClientProvider client={queryClient}>
-              <Outlet />
-            </QueryClientProvider>
-          </div>
-        </div>
-        {/* <Footer /> */}
-      </div>
+        )}
+      </>
     );
   };
 

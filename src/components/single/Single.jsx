@@ -25,6 +25,7 @@ const Single = (props) => {
     dataChanged,
     setDataChanged,
     headers,
+    setLoading,
   } = useContext(UserContext);
   const items = selectedUserData?.row || {};
   const [formState, setFormState] = useState({});
@@ -52,10 +53,7 @@ const Single = (props) => {
         formState,
         { headers }
       );
-      if (response) {
-        // console.log(response);
-        // console.log(formState);
-      }
+      setLoading(true);
       if (response.request.status === 200) {
         setDataChanged(!dataChanged);
         navigate(-1);

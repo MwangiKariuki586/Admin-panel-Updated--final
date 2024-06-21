@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { login_api, refresh_api } from "../../variables/variables";
 const Login = () => {
   const navigate = useNavigate();
-  const { logoutUser } = useContext(UserContext);
+  const { logoutUser, loading, setLoading } = useContext(UserContext);
 
   const [errors, setErrors] = useState({
     staffid: "",
@@ -82,6 +82,7 @@ const Login = () => {
           localStorage.setItem("access", access);
           localStorage.setItem("refresh", refresh);
           navigate("/");
+          setLoading(false);
         } else {
           alert("user is not an admin");
         }

@@ -1,0 +1,11 @@
+.loading_screen_wrapper {
+	background-color: #282d64;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 90vh;
+}
+svg {
+	height: 150px;
+	width: 150px;
+}

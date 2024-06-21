@@ -22,6 +22,7 @@ const Add = ({
     dataChanged,
     setDataChanged,
     headers,
+    setLoading,
   } = useContext(UserContext);
   useEffect(() => {
     // Reset form state when modal is closed
@@ -71,7 +72,7 @@ const Add = ({
       const response = await axios.post(endpoint, updatedFormState, {
         headers,
       });
-
+      setLoading(true);
       if (onSuccess) {
         onSuccess(response.data);
         setDataChanged(!dataChanged);
