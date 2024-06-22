@@ -8,7 +8,7 @@ import Menu from "./components/menu/Menu";
 import "./styles/global.scss";
 import Toners from "./pages/toners/Toners";
 import Printers from "./pages/printers/Printers";
-import Locations from "./pages/locations/Locations";
+import Locations from "./pages/Locations/Locations";
 import Departments from "./pages/departments/Departments";
 import NotFound from "./components/not found/NotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
