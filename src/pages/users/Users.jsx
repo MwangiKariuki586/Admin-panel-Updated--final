@@ -3,7 +3,7 @@ import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Add from "../../components/add/Add";
-import "./Users.scss";
+import "./users.scss";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import DataTable from "../../components/dataTable/DataTable";
