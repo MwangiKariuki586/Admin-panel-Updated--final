@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./Menu.scss";
+import "./menu.scss";
 import { HiOutlineHome } from "react-icons/hi";
 import { GoGitPullRequest } from "react-icons/go";
 import { RiStockLine } from "react-icons/ri";
