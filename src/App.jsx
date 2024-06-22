@@ -9,7 +9,7 @@ import "./styles/global.scss";
 import Toners from "./pages/toners/Toners";
 import Printers from "./pages/printers/Printers";
 import Locations from "./pages/Locations/Locations";
-import Departments from "./pages/departments/Departments";
+import Departments from "./pages/Departments/Departments";
 import NotFound from "./components/not found/NotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Areyousure from "./components/are you sure/Areyousure";
